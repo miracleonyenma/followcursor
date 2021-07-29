@@ -42,4 +42,8 @@
   -webkit-transform: translate(var(--X), var(--Y)) scale(1.15);
           transform: translate(var(--X), var(--Y)) scale(1.15);
 }
+
+.slides__content {
+  width: 100%;
+}
 /*# sourceMappingURL=styles.css.map */
