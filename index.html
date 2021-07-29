@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+    <div class="slides__container">
+        <div class="slides">
+            <div class="slides__item">
+                <img src="./assets/FullSizeRender (2)-edit.png" alt="" class="slides__content">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const docStyles = document.documentElement.style;
+        const slides = document.querySelector(".slides");
+        const slidesItem = slides.querySelector(".slides__item");
+        const slidesContent = slides.querySelector(".slides__content");
+
+        slides.addEventListener("mousemove", (e)=>{
+            let mouseCoords = {};
+            mouseCoords.x = e.pageX - slides.offsetLeft;
+            mouseCoords.y = e.pageY - slides.offsetTop;
+
+            mouseCoords.percentX = ((mouseCoords.x / slides.clientWidth) * 100);
+            mouseCoords.percentY = ((mouseCoords.y / slides.clientHeight) * 100);
+
+            console.log(`X: ${e.pageX} - ${slides.offsetLeft} = ${mouseCoords.x}`);
+            console.log(`W: ${slides.clientWidth}`);
+            console.log(`%X: ${mouseCoords.percentX}`);
+            console.log(`%X: ${mouseCoords.percentX} - ${50} = ${mouseCoords.percentX - 50}`);
+            console.log(`H: ${slides.clientHeight}`);
+            console.log(`%Y: ${mouseCoords.percentY}`);
+            console.log(`Y: ${e.pageY} - ${slides.offsetTop} = ${mouseCoords.y}`);
+
+            slidesItem.style.setProperty("--X", `${Math.floor(mouseCoords.percentX - 50) / 2}%`)
+            slidesItem.style.setProperty("--Y", `${Math.floor(mouseCoords.percentY - 50) / 2}%`)
+
+            slidesContent.style.setProperty("--X", `${Math.floor(mouseCoords.percentX - 50) / 10}%`)
+            slidesContent.style.setProperty("--Y", `${Math.floor(mouseCoords.percentY - 50) / 10}%`)
+
+            console.log(`--X: ${Math.floor(mouseCoords.percentX - 50) / 2}`);
+            console.log(`--Y: ${Math.floor(mouseCoords.percentY - 50) / 2}`);
+        })
+
+        slides.addEventListener("mouseleave", (e)=>{
+            slidesItem.style.setProperty("--X", `0%`)
+            slidesItem.style.setProperty("--Y", `0%`)
+
+            slidesContent.style.setProperty("--X", `0%`)
+            slidesContent.style.setProperty("--Y", `0%`)
+        })
+    </script>
+</body>
+
+</html>
